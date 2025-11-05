@@ -1,0 +1,322 @@
+/* MacroMicro Dark Theme Styles */
+
+/* Apply dark theme when enabled */
+[data-mm-dark-theme="true"] {
+  /* General page dark theme */
+  background-color: #0d1117 !important;
+  color: #c9d1d9 !important;
+}
+
+/* Chart containers */
+[data-mm-dark-theme="true"] .chart-container,
+[data-mm-dark-theme="true"] [class*="chart"],
+[data-mm-dark-theme="true"] .highcharts-container {
+  background-color: #161b22 !important;
+  color: #c9d1d9 !important;
+}
+
+/* Highcharts specific styling */
+[data-mm-dark-theme="true"] .highcharts-background {
+  fill: #161b22 !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-plot-background,
+[data-mm-dark-theme="true"] .highcharts-plot-border {
+  fill: #0d1117 !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-grid-line {
+  stroke: #30363d !important;
+  stroke-width: 1px !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-minor-grid-line {
+  stroke: #21262d !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-axis-line {
+  stroke: #484f58 !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-tick {
+  stroke: #484f58 !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-axis-labels text,
+[data-mm-dark-theme="true"] .highcharts-axis-title,
+[data-mm-dark-theme="true"] .highcharts-title,
+[data-mm-dark-theme="true"] .highcharts-subtitle,
+[data-mm-dark-theme="true"] .highcharts-legend-item text {
+  fill: #c9d1d9 !important;
+  color: #c9d1d9 !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-label text,
+[data-mm-dark-theme="true"] .highcharts-data-label text {
+  fill: #c9d1d9 !important;
+}
+
+/* Tooltip styling */
+[data-mm-dark-theme="true"] .highcharts-tooltip-box {
+  fill: #1c2128 !important;
+  stroke: #484f58 !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-tooltip text {
+  fill: #c9d1d9 !important;
+}
+
+/* Legend styling */
+[data-mm-dark-theme="true"] .highcharts-legend-box {
+  fill: #161b22 !important;
+  stroke: #30363d !important;
+}
+
+/* SVG-based charts (general) */
+[data-mm-dark-theme="true"] svg.mm-dark-svg {
+  background-color: #161b22 !important;
+}
+
+[data-mm-dark-theme="true"] svg.mm-dark-svg text {
+  fill: #c9d1d9 !important;
+}
+
+[data-mm-dark-theme="true"] svg.mm-dark-svg .axis line,
+[data-mm-dark-theme="true"] svg.mm-dark-svg .axis path {
+  stroke: #484f58 !important;
+}
+
+[data-mm-dark-theme="true"] svg.mm-dark-svg .grid line {
+  stroke: #30363d !important;
+  stroke-opacity: 0.5 !important;
+}
+
+[data-mm-dark-theme="true"] svg.mm-dark-svg rect[fill="#ffffff"],
+[data-mm-dark-theme="true"] svg.mm-dark-svg rect[fill="white"] {
+  fill: #161b22 !important;
+}
+
+/* Chart.js canvas styling */
+[data-mm-dark-theme="true"] canvas.mm-dark-theme-applied {
+  background-color: #161b22 !important;
+}
+
+/* TradingView and iframe charts */
+[data-mm-dark-theme="true"] iframe.mm-dark-iframe {
+  filter: invert(0.9) hue-rotate(180deg);
+}
+
+/* General page elements */
+[data-mm-dark-theme="true"] .page-content,
+[data-mm-dark-theme="true"] .content-wrapper,
+[data-mm-dark-theme="true"] main,
+[data-mm-dark-theme="true"] article {
+  background-color: #0d1117 !important;
+  color: #c9d1d9 !important;
+}
+
+[data-mm-dark-theme="true"] h1,
+[data-mm-dark-theme="true"] h2,
+[data-mm-dark-theme="true"] h3,
+[data-mm-dark-theme="true"] h4,
+[data-mm-dark-theme="true"] h5,
+[data-mm-dark-theme="true"] h6 {
+  color: #f0f6fc !important;
+}
+
+[data-mm-dark-theme="true"] p,
+[data-mm-dark-theme="true"] span,
+[data-mm-dark-theme="true"] div,
+[data-mm-dark-theme="true"] td,
+[data-mm-dark-theme="true"] th {
+  color: #c9d1d9 !important;
+}
+
+/* Tables */
+[data-mm-dark-theme="true"] table {
+  background-color: #161b22 !important;
+  border-color: #30363d !important;
+}
+
+[data-mm-dark-theme="true"] thead {
+  background-color: #1c2128 !important;
+}
+
+[data-mm-dark-theme="true"] tbody tr {
+  border-color: #30363d !important;
+}
+
+[data-mm-dark-theme="true"] tbody tr:hover {
+  background-color: #1c2128 !important;
+}
+
+/* Cards and containers */
+[data-mm-dark-theme="true"] .card,
+[data-mm-dark-theme="true"] .panel,
+[data-mm-dark-theme="true"] .box,
+[data-mm-dark-theme="true"] [class*="container"] {
+  background-color: #161b22 !important;
+  border-color: #30363d !important;
+}
+
+/* Navigation */
+[data-mm-dark-theme="true"] nav,
+[data-mm-dark-theme="true"] header,
+[data-mm-dark-theme="true"] footer {
+  background-color: #161b22 !important;
+  border-color: #30363d !important;
+}
+
+[data-mm-dark-theme="true"] a {
+  color: #58a6ff !important;
+}
+
+[data-mm-dark-theme="true"] a:hover {
+  color: #79c0ff !important;
+}
+
+/* Inputs and forms */
+[data-mm-dark-theme="true"] input,
+[data-mm-dark-theme="true"] select,
+[data-mm-dark-theme="true"] textarea,
+[data-mm-dark-theme="true"] button {
+  background-color: #0d1117 !important;
+  color: #c9d1d9 !important;
+  border-color: #30363d !important;
+}
+
+[data-mm-dark-theme="true"] input:focus,
+[data-mm-dark-theme="true"] select:focus,
+[data-mm-dark-theme="true"] textarea:focus {
+  border-color: #58a6ff !important;
+  outline-color: #58a6ff !important;
+}
+
+/* Scrollbars */
+[data-mm-dark-theme="true"] ::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+[data-mm-dark-theme="true"] ::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+
+[data-mm-dark-theme="true"] ::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 6px;
+}
+
+[data-mm-dark-theme="true"] ::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
+}
+
+/* Chart series colors - adjusted for dark theme */
+[data-mm-dark-theme="true"] .highcharts-series-0 .highcharts-point {
+  fill: #58a6ff !important;
+  stroke: #58a6ff !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-series-1 .highcharts-point {
+  fill: #f78166 !important;
+  stroke: #f78166 !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-series-2 .highcharts-point {
+  fill: #79c0ff !important;
+  stroke: #79c0ff !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-series-3 .highcharts-point {
+  fill: #56d364 !important;
+  stroke: #56d364 !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-series-4 .highcharts-point {
+  fill: #d2a8ff !important;
+  stroke: #d2a8ff !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-series-5 .highcharts-point {
+  fill: #ffa657 !important;
+  stroke: #ffa657 !important;
+}
+
+/* Line colors for series */
+[data-mm-dark-theme="true"] .highcharts-graph {
+  stroke-width: 2px !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-series-0 .highcharts-graph {
+  stroke: #58a6ff !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-series-1 .highcharts-graph {
+  stroke: #f78166 !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-series-2 .highcharts-graph {
+  stroke: #79c0ff !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-series-3 .highcharts-graph {
+  stroke: #56d364 !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-series-4 .highcharts-graph {
+  stroke: #d2a8ff !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-series-5 .highcharts-graph {
+  stroke: #ffa657 !important;
+}
+
+/* Area fills with transparency */
+[data-mm-dark-theme="true"] .highcharts-area {
+  fill-opacity: 0.2 !important;
+}
+
+/* Crosshair */
+[data-mm-dark-theme="true"] .highcharts-crosshair {
+  stroke: #c9d1d9 !important;
+  stroke-dasharray: 3, 3 !important;
+}
+
+/* Navigator and range selector (if present) */
+[data-mm-dark-theme="true"] .highcharts-navigator-series .highcharts-graph {
+  stroke: #484f58 !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-navigator-outline {
+  stroke: #30363d !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-navigator-handle {
+  fill: #484f58 !important;
+  stroke: #c9d1d9 !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-navigator-mask-inside {
+  fill: #0d1117 !important;
+  fill-opacity: 0.25 !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-navigator-mask-outside {
+  fill: #0d1117 !important;
+  fill-opacity: 0.8 !important;
+}
+
+/* Range selector buttons */
+[data-mm-dark-theme="true"] .highcharts-button-box {
+  fill: #21262d !important;
+  stroke: #30363d !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-button text {
+  fill: #c9d1d9 !important;
+}
+
+[data-mm-dark-theme="true"] .highcharts-button-pressed .highcharts-button-box,
+[data-mm-dark-theme="true"] .highcharts-button-hover .highcharts-button-box {
+  fill: #30363d !important;
+}
