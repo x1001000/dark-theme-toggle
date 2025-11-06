@@ -5,12 +5,30 @@ A Chrome extension that adds a dark theme toggle to **any website**, with specia
 ## Features
 
 - 🌐 **Works on ANY website** - not limited to specific domains
+- 🧠 **Smart detection** - automatically skips sites with native dark themes
 - 🌙 Toggle dark theme via popup or floating button
 - 💾 Persistent theme preference (saved across sessions and sites)
 - 📊 **Optimized for charts** - Highcharts, Chart.js, D3.js, SVG, Canvas
 - 🎨 GitHub-inspired dark color palette for readability
 - ⚡ Handles dynamically loaded content
 - 🎯 Two ways to toggle: extension popup or on-page button
+
+### Intelligent Native Theme Detection
+
+The extension automatically detects and respects sites that already have native dark themes! It checks for:
+
+1. **Dark color schemes** - Analyzes if the page is already using dark backgrounds and light text
+2. **Theme toggle UI** - Detects existing theme switchers (buttons, toggles)
+3. **Dark theme indicators** - Looks for CSS classes like `dark-mode`, `dark-theme`, or attributes like `data-theme="dark"`
+4. **CSS media queries** - Checks if the site responds to `prefers-color-scheme: dark`
+5. **Known sites** - Maintains a fallback list of popular sites with excellent native themes
+
+**Sites automatically excluded:**
+- YouTube, GitHub, Reddit, Twitter/X, Discord, Spotify, Netflix
+- Any site already in dark mode
+- Any site with a theme toggle
+
+This ensures the extension only activates where it's actually needed, preventing conflicts and maintaining the best user experience!
 
 ## Installation
 
@@ -73,10 +91,13 @@ dark-theme-toggle/
 
 1. **Content Script** (`content.js`):
    - Injects into **all web pages**
+   - **Intelligent detection**: Analyzes if site has native dark theme support
+   - Automatically excludes sites with native themes (confidence threshold: 60%)
    - Monitors DOM for chart elements and dynamic content
    - Applies dark theme classes when enabled
    - Creates a floating toggle button on every page
    - Detects Highcharts, Chart.js, D3.js, SVG, Canvas charts
+   - Logs detection results to console for debugging
 
 2. **Dark Theme CSS** (`dark-theme.css`):
    - 800+ lines of comprehensive dark theme styles
@@ -155,6 +176,13 @@ Or use the browser-based tool by opening `generate-icons.html` in your browser.
 - ✅ Any Chromium-based browser
 
 ## Version History
+
+**v2.1.0** - Intelligent Detection (Current)
+- Smart detection of sites with native dark themes
+- Automatically excludes sites that don't need the extension
+- Confidence-based decision making (analyzes 5 different indicators)
+- Prevents conflicts with existing dark themes
+- Enhanced compatibility with modern websites
 
 **v2.0.0** - Universal Dark Theme
 - Now works on **any website**, not just MacroMicro.me

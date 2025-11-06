@@ -1,8 +1,14 @@
 /* Universal Dark Theme Toggle Styles */
 
-/* NOTE: This extension automatically excludes sites with native dark themes
-   (YouTube, GitHub, Twitter/X, etc.) via content.js exclusion list.
-   The data-mm-dark-theme attribute will not be set on those sites. */
+/* NOTE: This extension automatically detects and excludes sites with native dark themes.
+   Detection checks for:
+   - Sites already using dark color schemes
+   - Theme toggle UI elements
+   - Dark theme CSS classes/attributes (dark-mode, data-theme="dark", etc.)
+   - CSS media query support for prefers-color-scheme
+   - Known sites with native themes (YouTube, GitHub, Reddit, etc.)
+
+   The data-mm-dark-theme attribute will not be set on excluded sites. */
 
 /* Apply dark theme when enabled */
 [data-mm-dark-theme="true"] {

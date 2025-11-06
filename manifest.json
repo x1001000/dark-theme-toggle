@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Universal Dark Theme Toggle",
-  "version": "2.0.0",
-  "description": "Toggle dark theme on any website with special support for charts and data visualizations",
+  "version": "2.1.0",
+  "description": "Intelligently toggle dark theme on websites that need it, with smart detection and chart support",
   "permissions": [
     "storage",
     "activeTab"

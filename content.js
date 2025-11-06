@@ -4,27 +4,280 @@
 (function() {
   'use strict';
 
-  // Sites with native dark themes that should be excluded
-  const EXCLUDED_SITES = [
+  // Fallback list for sites known to have native dark themes
+  // (used if auto-detection is uncertain)
+  const KNOWN_DARK_THEME_SITES = [
     'youtube.com',
     'youtu.be',
     'github.com',
     'twitter.com',
-    'x.com'
+    'x.com',
+    'reddit.com',
+    'discord.com',
+    'spotify.com',
+    'netflix.com'
   ];
 
-  // Check if current site should be excluded
-  function isExcludedSite() {
+  /**
+   * Detects if the site has native dark theme support
+   * Returns: { hasNativeDarkTheme: boolean, reason: string, confidence: number }
+   */
+  function detectNativeDarkTheme() {
+    const detectionResults = [];
+
+    // 1. Check if page is already using dark colors
+    const isDarkPage = checkIfPageIsDark();
+    if (isDarkPage.isDark) {
+      detectionResults.push({
+        indicator: 'Dark color scheme detected',
+        confidence: isDarkPage.confidence,
+        positive: true
+      });
+    }
+
+    // 2. Check for theme toggle elements
+    const hasThemeToggle = checkForThemeToggle();
+    if (hasThemeToggle) {
+      detectionResults.push({
+        indicator: 'Theme toggle UI detected',
+        confidence: 0.8,
+        positive: true
+      });
+    }
+
+    // 3. Check for dark theme CSS classes/attributes
+    const hasDarkThemeIndicators = checkForDarkThemeIndicators();
+    if (hasDarkThemeIndicators.found) {
+      detectionResults.push({
+        indicator: `Dark theme indicators: ${hasDarkThemeIndicators.indicators.join(', ')}`,
+        confidence: 0.7,
+        positive: true
+      });
+    }
+
+    // 4. Check if site responds to prefers-color-scheme
+    const respondsToColorScheme = checkColorSchemeSupport();
+    if (respondsToColorScheme) {
+      detectionResults.push({
+        indicator: 'Responds to prefers-color-scheme',
+        confidence: 0.9,
+        positive: true
+      });
+    }
+
+    // 5. Check fallback list
     const hostname = window.location.hostname;
-    return EXCLUDED_SITES.some(site => hostname.includes(site));
+    const isKnownSite = KNOWN_DARK_THEME_SITES.some(site => hostname.includes(site));
+    if (isKnownSite) {
+      detectionResults.push({
+        indicator: 'Known site with native dark theme',
+        confidence: 1.0,
+        positive: true
+      });
+    }
+
+    // Calculate overall confidence
+    const positiveResults = detectionResults.filter(r => r.positive);
+    const hasNativeDarkTheme = positiveResults.length > 0;
+    const avgConfidence = positiveResults.length > 0
+      ? positiveResults.reduce((sum, r) => sum + r.confidence, 0) / positiveResults.length
+      : 0;
+
+    return {
+      hasNativeDarkTheme,
+      confidence: avgConfidence,
+      reasons: detectionResults.map(r => r.indicator),
+      shouldExclude: hasNativeDarkTheme && avgConfidence >= 0.6
+    };
+  }
+
+  /**
+   * Checks if the page is already using dark colors
+   */
+  function checkIfPageIsDark() {
+    try {
+      const body = document.body;
+      const html = document.documentElement;
+      const elementsToCheck = [body, html];
+
+      // Get computed background colors
+      let darkElementCount = 0;
+      let totalChecked = 0;
+
+      for (const el of elementsToCheck) {
+        if (!el) continue;
+
+        const bgColor = window.getComputedStyle(el).backgroundColor;
+        const textColor = window.getComputedStyle(el).color;
+
+        const bgLuminance = getRelativeLuminance(bgColor);
+        const textLuminance = getRelativeLuminance(textColor);
+
+        // Dark background = low luminance
+        if (bgLuminance < 0.3) {
+          darkElementCount++;
+        }
+
+        // Light text on dark background
+        if (bgLuminance < 0.3 && textLuminance > 0.5) {
+          darkElementCount += 0.5;
+        }
+
+        totalChecked++;
+      }
+
+      const darkRatio = darkElementCount / totalChecked;
+      const isDark = darkRatio > 0.5;
+
+      return {
+        isDark,
+        confidence: Math.min(darkRatio * 1.5, 1.0)
+      };
+    } catch (e) {
+      return { isDark: false, confidence: 0 };
+    }
+  }
+
+  /**
+   * Calculates relative luminance of a color
+   */
+  function getRelativeLuminance(color) {
+    try {
+      const rgb = color.match(/\d+/g);
+      if (!rgb || rgb.length < 3) return 0.5;
+
+      const [r, g, b] = rgb.map(val => {
+        const channel = parseInt(val) / 255;
+        return channel <= 0.03928
+          ? channel / 12.92
+          : Math.pow((channel + 0.055) / 1.055, 2.4);
+      });
+
+      return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    } catch (e) {
+      return 0.5;
+    }
+  }
+
+  /**
+   * Checks for theme toggle UI elements
+   */
+  function checkForThemeToggle() {
+    const toggleSelectors = [
+      '[aria-label*="theme" i]',
+      '[aria-label*="dark mode" i]',
+      '[aria-label*="light mode" i]',
+      '[title*="theme" i]',
+      '[title*="dark mode" i]',
+      'button[class*="theme" i]',
+      'button[id*="theme" i]',
+      '[role="switch"][aria-label*="theme" i]',
+      '[role="switch"][aria-label*="dark" i]'
+    ];
+
+    return toggleSelectors.some(selector => {
+      try {
+        return document.querySelector(selector) !== null;
+      } catch (e) {
+        return false;
+      }
+    });
+  }
+
+  /**
+   * Checks for common dark theme indicators in HTML
+   */
+  function checkForDarkThemeIndicators() {
+    const indicators = [];
+
+    // Check for dark theme classes
+    const darkThemeClasses = [
+      'dark-mode', 'dark-theme', 'theme-dark', 'darkmode',
+      'dark', '__dark', 'dark-ui'
+    ];
+
+    const html = document.documentElement;
+    const body = document.body;
+
+    for (const cls of darkThemeClasses) {
+      if (html?.classList.contains(cls) || body?.classList.contains(cls)) {
+        indicators.push(`class="${cls}"`);
+      }
+    }
+
+    // Check for data attributes
+    const darkThemeAttrs = ['theme', 'data-theme', 'data-color-mode', 'data-color-scheme'];
+    for (const attr of darkThemeAttrs) {
+      const value = html?.getAttribute(attr) || body?.getAttribute(attr);
+      if (value && /dark/i.test(value)) {
+        indicators.push(`${attr}="${value}"`);
+      }
+    }
+
+    // Check for CSS variables suggesting theme support
+    const styles = window.getComputedStyle(html);
+    const cssVars = ['--theme', '--color-mode', '--background', '--bg'];
+    for (const varName of cssVars) {
+      const value = styles.getPropertyValue(varName);
+      if (value && value.trim()) {
+        indicators.push(`${varName} defined`);
+        break; // Only report once for CSS vars
+      }
+    }
+
+    return {
+      found: indicators.length > 0,
+      indicators
+    };
+  }
+
+  /**
+   * Checks if site responds to prefers-color-scheme media query
+   */
+  function checkColorSchemeSupport() {
+    try {
+      // Check if there are any stylesheets that use prefers-color-scheme
+      const styleSheets = Array.from(document.styleSheets);
+
+      for (const sheet of styleSheets) {
+        try {
+          const rules = sheet.cssRules || sheet.rules;
+          if (!rules) continue;
+
+          for (const rule of Array.from(rules)) {
+            if (rule.media && rule.media.mediaText.includes('prefers-color-scheme')) {
+              return true;
+            }
+          }
+        } catch (e) {
+          // CORS restrictions - can't access external stylesheets
+          continue;
+        }
+      }
+
+      // Check meta tag for color-scheme
+      const metaColorScheme = document.querySelector('meta[name="color-scheme"]');
+      if (metaColorScheme) {
+        return true;
+      }
+
+      return false;
+    } catch (e) {
+      return false;
+    }
   }
 
   // Store MutationObserver reference to prevent memory leaks
   let observer = null;
 
-  // Skip initialization on excluded sites
-  if (isExcludedSite()) {
-    console.log('Dark Theme Toggle: Site excluded (has native dark theme)');
+  // Perform detection
+  const detection = detectNativeDarkTheme();
+
+  console.log('Dark Theme Toggle Detection:', detection);
+
+  // Skip initialization if site has native dark theme
+  if (detection.shouldExclude) {
+    console.log('Dark Theme Toggle: Site excluded -', detection.reasons.join('; '));
     return;
   }
 
