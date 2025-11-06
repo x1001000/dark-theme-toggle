@@ -1,12 +1,8 @@
 # Quick Installation Guide
 
-## Step 1: Generate Icons
+**Icons are already included - just load and go!** 🚀
 
-1. Open `generate-icons.html` in your browser
-2. Click "Download All Icons"
-3. Save the three icon files (`icon16.png`, `icon48.png`, `icon128.png`) to the `icons/` directory
-
-## Step 2: Load Extension in Chrome
+## Step 1: Load Extension in Chrome
 
 1. Open Chrome and go to `chrome://extensions/`
 2. Enable "Developer mode" (toggle in top-right)
@@ -14,7 +10,7 @@
 4. Select this directory (`mm-chart-dark`)
 5. The extension should now be loaded!
 
-## Step 3: Test It Out
+## Step 2: Test It Out
 
 1. Visit a MacroMicro.me chart page:
    - https://www.macromicro.me/charts/109709/big-techs-m7-capex
@@ -29,11 +25,23 @@ Instead of the extension popup, you can use the floating toggle button:
 - Click it to toggle between light and dark themes
 - The button changes to ☀️ when dark theme is active
 
+## Regenerating Icons (Optional)
+
+Icons are pre-generated and included in the repository. If you want to customize them:
+
+**Option 1 - Python script:**
+```bash
+python3 generate_icons.py
+```
+
+**Option 2 - Browser tool:**
+Open `generate-icons.html` in your browser and download the icons manually.
+
 ## Troubleshooting
 
 **"Could not load icon" error:**
-- Make sure you've generated and placed the icon files in the `icons/` directory
-- The files must be named exactly: `icon16.png`, `icon48.png`, `icon128.png`
+- Icons should already be in the `icons/` directory
+- If missing, run: `python3 generate_icons.py`
 
 **Extension not appearing in toolbar:**
 - Click the puzzle piece icon in Chrome's toolbar

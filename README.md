@@ -14,19 +14,14 @@ A Chrome extension that adds a dark theme toggle for charts on MacroMicro.me, st
 
 ### Method 1: Load as Unpacked Extension (Development)
 
-1. **Prepare Icons** (required for Chrome):
-   - Create or download three icon files: `icon16.png`, `icon48.png`, and `icon128.png`
-   - Place them in the `icons/` directory
-   - You can use any moon/chart icon or generate simple ones
-
-2. **Load Extension in Chrome**:
+1. **Load Extension in Chrome**:
    - Open Chrome and navigate to `chrome://extensions/`
    - Enable "Developer mode" (toggle in top-right corner)
    - Click "Load unpacked"
    - Select the `mm-chart-dark` directory
-   - The extension should now appear in your extensions list
+   - The extension should now appear in your extensions list (icons are already included!)
 
-3. **Use the Extension**:
+2. **Use the Extension**:
    - Visit any chart page on MacroMicro.me:
      - https://www.macromicro.me/charts/109709/big-techs-m7-capex
      - https://www.macromicro.me/collections/4093/us-big-tech/109709/big-techs-m7-capex
@@ -107,10 +102,20 @@ You can customize the theme by editing `dark-theme.css`:
 }
 ```
 
+## Regenerating Icons
+
+Icons are already included in the `icons/` directory. If you need to regenerate them:
+
+```bash
+python3 generate_icons.py
+```
+
+Or use the browser-based tool by opening `generate-icons.html` in your browser.
+
 ## Troubleshooting
 
 **Extension not appearing:**
-- Make sure all icon files are present in the `icons/` directory
+- Icons are already included, so this should work out of the box
 - Check Chrome Extensions page for error messages
 - Reload the extension after making changes
 
