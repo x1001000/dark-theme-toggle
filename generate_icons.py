@@ -71,8 +71,8 @@ def generate_icon(size, filename):
     print(f"✓ Generated {filename} ({size}x{size})")
 
 # Generate all three icon sizes
-generate_icon(16, '/home/user/mm-chart-dark/icons/icon16.png')
-generate_icon(48, '/home/user/mm-chart-dark/icons/icon48.png')
-generate_icon(128, '/home/user/mm-chart-dark/icons/icon128.png')
+generate_icon(16, '/home/user/dark-theme-toggle/icons/icon16.png')
+generate_icon(48, '/home/user/dark-theme-toggle/icons/icon48.png')
+generate_icon(128, '/home/user/dark-theme-toggle/icons/icon128.png')
 
 print("\n✅ All icons generated successfully!")

@@ -20,7 +20,7 @@ A Chrome extension that adds a dark theme toggle to **any website**, with specia
    - Open Chrome and navigate to `chrome://extensions/`
    - Enable "Developer mode" (toggle in top-right corner)
    - Click "Load unpacked"
-   - Select the `mm-chart-dark` directory
+   - Select the `dark-theme-toggle` directory
    - The extension should now appear in your extensions list (icons are already included!)
 
 2. **Use the Extension**:
@@ -37,7 +37,7 @@ A Chrome extension that adds a dark theme toggle to **any website**, with specia
 To package the extension:
 ```bash
 # Create a zip file
-zip -r mm-chart-dark.zip . -x "*.git*" -x "README.md" -x "*.DS_Store"
+zip -r dark-theme-toggle.zip . -x "*.git*" -x "README.md" -x "*.DS_Store"
 ```
 
 Then load the unpacked extension or submit to Chrome Web Store.
@@ -54,7 +54,7 @@ Perfect for:
 ## Files Structure
 
 ```
-mm-chart-dark/
+dark-theme-toggle/
 ├── manifest.json          # Extension configuration
 ├── content.js            # Main content script
 ├── dark-theme.css        # Dark theme styles (800+ lines)

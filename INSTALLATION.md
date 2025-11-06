@@ -9,7 +9,7 @@
 1. Open Chrome and go to `chrome://extensions/`
 2. Enable "Developer mode" (toggle in top-right)
 3. Click "Load unpacked"
-4. Select this directory (`mm-chart-dark`)
+4. Select this directory (`dark-theme-toggle`)
 5. The extension should now be loaded!
 
 ## Step 2: Test It Out
