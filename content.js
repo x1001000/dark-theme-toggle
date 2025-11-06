@@ -1,5 +1,6 @@
-// Universal Dark Theme Toggle - Content Script
-// Works on any website with special support for charts and data visualizations
+// Adaptive Dark Theme - Content Script
+// Intelligently provides dark theme toggle for sites without native dark modes
+// Includes special support for charts and data visualizations
 
 (function() {
   'use strict';

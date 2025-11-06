@@ -1,6 +1,6 @@
-# Universal Dark Theme Toggle
+# Adaptive Dark Theme
 
-A Chrome extension that adds a dark theme toggle to **any website**, with special optimizations for charts and data visualizations. Perfect for reducing eye strain while browsing financial charts, data dashboards, or any web content.
+A Chrome extension that intelligently provides a dark theme toggle for websites **without native dark modes**. Automatically detects and skips sites with existing dark themes, preventing conflicts. Includes special optimizations for charts and data visualizations.
 
 ## Features
 
@@ -13,9 +13,9 @@ A Chrome extension that adds a dark theme toggle to **any website**, with specia
 - ⚡ Handles dynamically loaded content
 - 🎯 Two ways to toggle: extension popup or on-page button
 
-### Intelligent Native Theme Detection
+### Adaptive Intelligence
 
-The extension automatically detects and respects sites that already have native dark themes! It checks for:
+The extension automatically detects sites with native dark themes and only activates on sites that need it! It checks for:
 
 1. **Dark color schemes** - Analyzes if the page is already using dark backgrounds and light text
 2. **Theme toggle UI** - Detects existing theme switchers (buttons, toggles)
@@ -23,12 +23,12 @@ The extension automatically detects and respects sites that already have native 
 4. **CSS media queries** - Checks if the site responds to `prefers-color-scheme: dark`
 5. **Known sites** - Maintains a fallback list of popular sites with excellent native themes
 
-**Sites automatically excluded:**
+**Sites where the toggle won't activate:**
 - YouTube, GitHub, Reddit, Twitter/X, Discord, Spotify, Netflix
 - Any site already in dark mode
 - Any site with a theme toggle
 
-This ensures the extension only activates where it's actually needed, preventing conflicts and maintaining the best user experience!
+This adaptive behavior ensures the toggle only appears where it's needed, preventing conflicts and maintaining the best user experience!
 
 ## Installation
 
@@ -177,14 +177,15 @@ Or use the browser-based tool by opening `generate-icons.html` in your browser.
 
 ## Version History
 
-**v2.1.0** - Intelligent Detection (Current)
+**v2.2.0** - Adaptive Intelligence (Current)
+- Renamed to "Adaptive Dark Theme" to reflect intelligent behavior
 - Smart detection of sites with native dark themes
-- Automatically excludes sites that don't need the extension
+- Toggle only activates on sites that need it
 - Confidence-based decision making (analyzes 5 different indicators)
 - Prevents conflicts with existing dark themes
 - Enhanced compatibility with modern websites
 
-**v2.0.0** - Universal Dark Theme
+**v2.0.0** - Universal Coverage
 - Now works on **any website**, not just MacroMicro.me
 - Enhanced chart detection for multiple libraries
 - Improved compatibility across different sites

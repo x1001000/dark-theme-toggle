@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Universal Dark Theme Toggle",
+  "name": "Adaptive Dark Theme",
   "version": "2.2.0",
-  "description": "Intelligently toggle dark theme on websites that need it, with smart detection and chart support",
+  "description": "Dark theme toggle that activates only on sites without native dark mode. Smart detection prevents conflicts.",
   "permissions": [
     "storage",
     "activeTab"

@@ -1,6 +1,6 @@
 # Quick Installation Guide
 
-**Universal Dark Theme Toggle - Works on ANY website!** 🌐
+**Adaptive Dark Theme - Smart toggle for sites without native dark mode!** 🌐
 
 **Icons are already included - just load and go!** 🚀
 
@@ -55,7 +55,7 @@ Open `generate-icons.html` in your browser and download the icons manually.
 
 **Extension not appearing in toolbar:**
 - Click the puzzle piece icon in Chrome's toolbar
-- Find "Universal Dark Theme Toggle" and click the pin icon
+- Find "Adaptive Dark Theme" and click the pin icon
 
 **Dark theme not working:**
 - Try refreshing the page after enabling the extension
@@ -65,6 +65,7 @@ Open `generate-icons.html` in your browser and download the icons manually.
 
 ## What Makes This Special?
 
+- 🧠 **Adaptive** - Only activates on sites without native dark modes
 - 🌐 **Universal** - Works on ANY website, not just specific domains
 - 📊 **Chart-optimized** - Special support for Highcharts, Chart.js, D3.js, SVG charts
 - 💾 **Persistent** - Remembers your preference across all websites

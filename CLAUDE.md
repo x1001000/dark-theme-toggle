@@ -10,7 +10,8 @@
 
 **v2.0 - Enhanced Goal:**
 - Expanded to work on ANY website, not just MacroMicro.me
-- Universal dark theme toggle for all web content
+- Adaptive dark theme toggle that activates only on sites without native dark modes
+- Smart detection prevents conflicts with existing dark themes
 - Special optimizations for charts and data visualizations
 - Works on financial sites, dashboards, documentation, news, etc.
-- Better user experience with broader applicability
+- Better user experience with broader applicability and intelligent behavior
