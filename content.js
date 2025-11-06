@@ -140,9 +140,15 @@
 
   /**
    * Calculates relative luminance of a color
+   * Returns 0.5 (neutral) if color is transparent or invalid
    */
   function getRelativeLuminance(color) {
     try {
+      // Handle transparent backgrounds
+      if (!color || color === 'transparent' || color === 'rgba(0, 0, 0, 0)') {
+        return 0.5;  // Neutral - treat as unknown
+      }
+
       const rgb = color.match(/\d+/g);
       if (!rgb || rgb.length < 3) return 0.5;
 
@@ -153,8 +159,10 @@
           : Math.pow((channel + 0.055) / 1.055, 2.4);
       });
 
-      return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+      const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+      return luminance;
     } catch (e) {
+      console.warn('Dark Theme Toggle: Error calculating luminance for color:', color, e);
       return 0.5;
     }
   }
@@ -270,16 +278,36 @@
   // Store MutationObserver reference to prevent memory leaks
   let observer = null;
 
-  // Perform detection
-  const detection = detectNativeDarkTheme();
+  // Wait for body to be available before running detection
+  function initialize() {
+    // Ensure body exists before running detection
+    if (!document.body) {
+      console.log('Dark Theme Toggle: Waiting for document.body...');
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initialize);
+      } else {
+        // Body should exist, but doesn't - try again shortly
+        setTimeout(initialize, 100);
+      }
+      return;
+    }
 
-  console.log('Dark Theme Toggle Detection:', detection);
+    // Perform detection
+    const detection = detectNativeDarkTheme();
 
-  // Skip initialization if site has native dark theme
-  if (detection.shouldExclude) {
-    console.log('Dark Theme Toggle: Site excluded -', detection.reasons.join('; '));
-    return;
+    console.log('Dark Theme Toggle Detection:', detection);
+
+    // Skip initialization if site has native dark theme
+    if (detection.shouldExclude) {
+      console.log('Dark Theme Toggle: Site excluded -', detection.reasons.join('; '));
+      return;
+    }
+
+    // Proceed with initialization
+    initializeExtension();
   }
+
+  function initializeExtension() {
 
   // Check if dark theme is enabled
   chrome.storage.sync.get(['darkThemeEnabled'], function(result) {
@@ -367,54 +395,71 @@
 
   // Create toggle button on the page
   function createToggleButton() {
-    const button = document.createElement('button');
-    button.id = 'mm-dark-theme-toggle';
-    button.innerHTML = '🌙';
-    button.title = 'Toggle Dark Theme';
-    button.style.cssText = `
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 2147483647;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      border: 2px solid #333;
-      background: #fff;
-      cursor: pointer;
-      font-size: 24px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      transition: all 0.3s ease;
-    `;
+    // Safety check - ensure body exists
+    if (!document.body) {
+      console.error('Dark Theme Toggle: Cannot create button - document.body not available');
+      return;
+    }
 
-    chrome.storage.sync.get(['darkThemeEnabled'], function(result) {
-      if (result.darkThemeEnabled) {
-        button.innerHTML = '☀️';
-        button.style.background = '#1a1a1a';
-        button.style.borderColor = '#666';
-      }
-    });
+    // Check if button already exists
+    if (document.getElementById('mm-dark-theme-toggle')) {
+      console.log('Dark Theme Toggle: Button already exists, skipping creation');
+      return;
+    }
 
-    button.addEventListener('click', function() {
+    try {
+      const button = document.createElement('button');
+      button.id = 'mm-dark-theme-toggle';
+      button.innerHTML = '🌙';
+      button.title = 'Toggle Dark Theme';
+      button.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 2147483647;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid #333;
+        background: #fff;
+        cursor: pointer;
+        font-size: 24px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+      `;
+
       chrome.storage.sync.get(['darkThemeEnabled'], function(result) {
-        const newState = !result.darkThemeEnabled;
-        chrome.storage.sync.set({ darkThemeEnabled: newState }, function() {
-          if (newState) {
-            button.innerHTML = '☀️';
-            button.style.background = '#1a1a1a';
-            button.style.borderColor = '#666';
-            enableDarkTheme();
-          } else {
-            button.innerHTML = '🌙';
-            button.style.background = '#fff';
-            button.style.borderColor = '#333';
-            disableDarkTheme();
-          }
+        if (result.darkThemeEnabled) {
+          button.innerHTML = '☀️';
+          button.style.background = '#1a1a1a';
+          button.style.borderColor = '#666';
+        }
+      });
+
+      button.addEventListener('click', function() {
+        chrome.storage.sync.get(['darkThemeEnabled'], function(result) {
+          const newState = !result.darkThemeEnabled;
+          chrome.storage.sync.set({ darkThemeEnabled: newState }, function() {
+            if (newState) {
+              button.innerHTML = '☀️';
+              button.style.background = '#1a1a1a';
+              button.style.borderColor = '#666';
+              enableDarkTheme();
+            } else {
+              button.innerHTML = '🌙';
+              button.style.background = '#fff';
+              button.style.borderColor = '#333';
+              disableDarkTheme();
+            }
+          });
         });
       });
-    });
 
-    document.body.appendChild(button);
+      document.body.appendChild(button);
+      console.log('Dark Theme Toggle: Button created successfully');
+    } catch (error) {
+      console.error('Dark Theme Toggle: Error creating button', error);
+    }
   }
 
   // Initialize toggle button when DOM is ready
@@ -423,4 +468,9 @@
   } else {
     createToggleButton();
   }
+
+  }  // End of initializeExtension()
+
+  // Start the initialization process
+  initialize();
 })();
