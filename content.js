@@ -4,8 +4,29 @@
 (function() {
   'use strict';
 
+  // Sites with native dark themes that should be excluded
+  const EXCLUDED_SITES = [
+    'youtube.com',
+    'youtu.be',
+    'github.com',
+    'twitter.com',
+    'x.com'
+  ];
+
+  // Check if current site should be excluded
+  function isExcludedSite() {
+    const hostname = window.location.hostname;
+    return EXCLUDED_SITES.some(site => hostname.includes(site));
+  }
+
   // Store MutationObserver reference to prevent memory leaks
   let observer = null;
+
+  // Skip initialization on excluded sites
+  if (isExcludedSite()) {
+    console.log('Dark Theme Toggle: Site excluded (has native dark theme)');
+    return;
+  }
 
   // Check if dark theme is enabled
   chrome.storage.sync.get(['darkThemeEnabled'], function(result) {

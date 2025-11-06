@@ -1,4 +1,8 @@
-/* MacroMicro Dark Theme Styles */
+/* Universal Dark Theme Toggle Styles */
+
+/* NOTE: This extension automatically excludes sites with native dark themes
+   (YouTube, GitHub, Twitter/X, etc.) via content.js exclusion list.
+   The data-mm-dark-theme attribute will not be set on those sites. */
 
 /* Apply dark theme when enabled */
 [data-mm-dark-theme="true"] {
