@@ -3,6 +3,7 @@
 
 from PIL import Image, ImageDraw
 import math
+import os
 
 def create_gradient_background(size):
     """Create a purple gradient background"""
@@ -70,9 +71,16 @@ def generate_icon(size, filename):
     img.save(filename, 'PNG')
     print(f"✓ Generated {filename} ({size}x{size})")
 
+# Get the directory where this script is located
+script_dir = os.path.dirname(os.path.abspath(__file__))
+icons_dir = os.path.join(script_dir, 'icons')
+
+# Create icons directory if it doesn't exist
+os.makedirs(icons_dir, exist_ok=True)
+
 # Generate all three icon sizes
-generate_icon(16, '/home/user/dark-theme-toggle/icons/icon16.png')
-generate_icon(48, '/home/user/dark-theme-toggle/icons/icon48.png')
-generate_icon(128, '/home/user/dark-theme-toggle/icons/icon128.png')
+generate_icon(16, os.path.join(icons_dir, 'icon16.png'))
+generate_icon(48, os.path.join(icons_dir, 'icon48.png'))
+generate_icon(128, os.path.join(icons_dir, 'icon128.png'))
 
 print("\n✅ All icons generated successfully!")

@@ -4,6 +4,9 @@
 (function() {
   'use strict';
 
+  // Store MutationObserver reference to prevent memory leaks
+  let observer = null;
+
   // Check if dark theme is enabled
   chrome.storage.sync.get(['darkThemeEnabled'], function(result) {
     if (result.darkThemeEnabled) {
@@ -25,8 +28,13 @@
   function enableDarkTheme() {
     document.documentElement.setAttribute('data-mm-dark-theme', 'true');
 
+    // Disconnect existing observer if present
+    if (observer) {
+      observer.disconnect();
+    }
+
     // Apply dark theme to dynamically loaded charts
-    const observer = new MutationObserver(function(mutations) {
+    observer = new MutationObserver(function(mutations) {
       mutations.forEach(function(mutation) {
         if (mutation.addedNodes.length) {
           applyDarkThemeToCharts();
@@ -44,6 +52,12 @@
 
   function disableDarkTheme() {
     document.documentElement.removeAttribute('data-mm-dark-theme');
+
+    // Disconnect observer to prevent memory leaks
+    if (observer) {
+      observer.disconnect();
+      observer = null;
+    }
   }
 
   function applyDarkThemeToCharts() {
@@ -87,7 +101,7 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      z-index: 10000;
+      z-index: 2147483647;
       width: 50px;
       height: 50px;
       border-radius: 50%;
