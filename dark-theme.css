@@ -17,6 +17,38 @@
   color: #c9d1d9 !important;
 }
 
+/* Universal element styling - catches all elements */
+[data-mm-dark-theme="true"] * {
+  border-color: #30363d !important;
+}
+
+/* Force backgrounds on all common elements */
+[data-mm-dark-theme="true"] div:not([class*="chart"]):not([class*="graph"]):not(canvas):not(svg),
+[data-mm-dark-theme="true"] section,
+[data-mm-dark-theme="true"] aside,
+[data-mm-dark-theme="true"] main,
+[data-mm-dark-theme="true"] article {
+  background-color: #0d1117 !important;
+}
+
+/* Override white/light backgrounds aggressively */
+[data-mm-dark-theme="true"] [style*="background-color: rgb(255, 255, 255)"],
+[data-mm-dark-theme="true"] [style*="background-color:#fff"],
+[data-mm-dark-theme="true"] [style*="background-color: white"],
+[data-mm-dark-theme="true"] [style*="background: rgb(255, 255, 255)"],
+[data-mm-dark-theme="true"] [style*="background:#fff"],
+[data-mm-dark-theme="true"] [style*="background: white"] {
+  background-color: #0d1117 !important;
+  background: #0d1117 !important;
+}
+
+/* Override dark text on light backgrounds */
+[data-mm-dark-theme="true"] [style*="color: rgb(0, 0, 0)"],
+[data-mm-dark-theme="true"] [style*="color:#000"],
+[data-mm-dark-theme="true"] [style*="color: black"] {
+  color: #c9d1d9 !important;
+}
+
 /* Chart containers */
 [data-mm-dark-theme="true"] .chart-container,
 [data-mm-dark-theme="true"] [class*="chart"],
@@ -138,8 +170,25 @@
 [data-mm-dark-theme="true"] span,
 [data-mm-dark-theme="true"] div,
 [data-mm-dark-theme="true"] td,
-[data-mm-dark-theme="true"] th {
+[data-mm-dark-theme="true"] th,
+[data-mm-dark-theme="true"] li,
+[data-mm-dark-theme="true"] label,
+[data-mm-dark-theme="true"] strong,
+[data-mm-dark-theme="true"] em,
+[data-mm-dark-theme="true"] small,
+[data-mm-dark-theme="true"] code,
+[data-mm-dark-theme="true"] pre {
   color: #c9d1d9 !important;
+}
+
+/* Protect images, icons, and logos from being affected */
+[data-mm-dark-theme="true"] img,
+[data-mm-dark-theme="true"] [class*="logo"],
+[data-mm-dark-theme="true"] [class*="icon"],
+[data-mm-dark-theme="true"] picture,
+[data-mm-dark-theme="true"] video {
+  filter: none !important;
+  background-color: transparent !important;
 }
 
 /* Tables */
@@ -160,11 +209,18 @@
   background-color: #1c2128 !important;
 }
 
-/* Cards and containers */
+/* Cards and containers - more comprehensive */
 [data-mm-dark-theme="true"] .card,
 [data-mm-dark-theme="true"] .panel,
 [data-mm-dark-theme="true"] .box,
-[data-mm-dark-theme="true"] [class*="container"] {
+[data-mm-dark-theme="true"] [class*="container"],
+[data-mm-dark-theme="true"] [class*="wrapper"],
+[data-mm-dark-theme="true"] [class*="content"],
+[data-mm-dark-theme="true"] [class*="section"],
+[data-mm-dark-theme="true"] [class*="Card"],
+[data-mm-dark-theme="true"] [class*="Panel"],
+[data-mm-dark-theme="true"] [id*="content"],
+[data-mm-dark-theme="true"] [id*="main"] {
   background-color: #161b22 !important;
   border-color: #30363d !important;
 }
