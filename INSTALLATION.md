@@ -1,5 +1,7 @@
 # Quick Installation Guide
 
+**Universal Dark Theme Toggle - Works on ANY website!** 🌐
+
 **Icons are already included - just load and go!** 🚀
 
 ## Step 1: Load Extension in Chrome
@@ -12,16 +14,24 @@
 
 ## Step 2: Test It Out
 
-1. Visit a MacroMicro.me chart page:
-   - https://www.macromicro.me/charts/109709/big-techs-m7-capex
+1. Visit **any website** you want to darken:
+   - Financial charts: https://www.macromicro.me/charts/109709/big-techs-m7-capex
+   - News sites: https://news.ycombinator.com
+   - Documentation: https://docs.python.org
+   - Or literally any other website!
 2. Click the extension icon in your toolbar
 3. Toggle the dark theme switch
-4. The chart should switch to dark mode!
+4. The entire page switches to dark mode!
+5. Or use the floating 🌙 button in the bottom-right corner
 
-## Alternative: Use the Floating Button
+## Two Ways to Toggle
 
-Instead of the extension popup, you can use the floating toggle button:
-- Look for the 🌙 button in the bottom-right corner of MacroMicro.me pages
+**Method 1 - Extension Popup:**
+- Click the extension icon in your toolbar
+- Toggle the switch in the popup
+
+**Method 2 - Floating Button:**
+- Look for the 🌙 button in the bottom-right corner of ANY page
 - Click it to toggle between light and dark themes
 - The button changes to ☀️ when dark theme is active
 
@@ -45,19 +55,27 @@ Open `generate-icons.html` in your browser and download the icons manually.
 
 **Extension not appearing in toolbar:**
 - Click the puzzle piece icon in Chrome's toolbar
-- Find "MacroMicro Chart Dark Theme" and click the pin icon
+- Find "Universal Dark Theme Toggle" and click the pin icon
 
 **Dark theme not working:**
-- Make sure you're on a MacroMicro.me chart page
 - Try refreshing the page after enabling the extension
+- Look for the floating 🌙 button in the bottom-right
+- The extension now works on ALL websites by default
 - Check the browser console (F12) for any errors
 
-## Features
+## What Makes This Special?
 
-- 🌙 Beautiful dark theme optimized for financial charts
-- 💾 Remembers your preference across sessions
-- ⚡ Works with dynamically loaded charts
-- 🎨 Carefully selected colors for readability
-- 🎯 Both popup and on-page toggle options
+- 🌐 **Universal** - Works on ANY website, not just specific domains
+- 📊 **Chart-optimized** - Special support for Highcharts, Chart.js, D3.js, SVG charts
+- 💾 **Persistent** - Remembers your preference across all websites
+- ⚡ **Dynamic** - Handles content that loads after the page
+- 🎨 **Beautiful** - GitHub Dark-inspired color scheme
+- 🎯 **Flexible** - Toggle via popup or floating button
 
-Enjoy your dark-themed charts! 📊✨
+Perfect for:
+- Financial charts and market data
+- Data dashboards and visualizations
+- Reading documentation and articles
+- Any website where you prefer dark mode
+
+Enjoy your dark-themed browsing experience! 🌙✨

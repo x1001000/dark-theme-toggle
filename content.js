@@ -1,4 +1,5 @@
-// MacroMicro Chart Dark Theme Content Script
+// Universal Dark Theme Toggle - Content Script
+// Works on any website with special support for charts and data visualizations
 
 (function() {
   'use strict';

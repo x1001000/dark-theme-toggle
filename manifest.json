@@ -1,20 +1,19 @@
 {
   "manifest_version": 3,
-  "name": "MacroMicro Chart Dark Theme",
-  "version": "1.0.0",
-  "description": "Toggle dark theme for charts on MacroMicro.me",
+  "name": "Universal Dark Theme Toggle",
+  "version": "2.0.0",
+  "description": "Toggle dark theme on any website with special support for charts and data visualizations",
   "permissions": [
     "storage",
     "activeTab"
   ],
   "host_permissions": [
-    "https://www.macromicro.me/*"
+    "<all_urls>"
   ],
   "content_scripts": [
     {
       "matches": [
-        "https://www.macromicro.me/charts/*",
-        "https://www.macromicro.me/collections/*"
+        "<all_urls>"
       ],
       "js": ["content.js"],
       "css": ["dark-theme.css"],

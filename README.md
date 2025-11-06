@@ -1,14 +1,16 @@
-# MacroMicro Chart Dark Theme Extension
+# Universal Dark Theme Toggle
 
-A Chrome extension that adds a dark theme toggle for charts on MacroMicro.me, styled similar to popular financial chart dark themes.
+A Chrome extension that adds a dark theme toggle to **any website**, with special optimizations for charts and data visualizations. Perfect for reducing eye strain while browsing financial charts, data dashboards, or any web content.
 
 ## Features
 
-- 🌙 Toggle dark theme for charts on MacroMicro.me
-- 💾 Persistent theme preference (saved across sessions)
-- 🎨 Optimized dark color scheme for financial charts
-- ⚡ Works with dynamic chart updates
-- 🎯 Supports multiple chart types (Highcharts, SVG, Canvas-based)
+- 🌐 **Works on ANY website** - not limited to specific domains
+- 🌙 Toggle dark theme via popup or floating button
+- 💾 Persistent theme preference (saved across sessions and sites)
+- 📊 **Optimized for charts** - Highcharts, Chart.js, D3.js, SVG, Canvas
+- 🎨 GitHub-inspired dark color palette for readability
+- ⚡ Handles dynamically loaded content
+- 🎯 Two ways to toggle: extension popup or on-page button
 
 ## Installation
 
@@ -22,11 +24,13 @@ A Chrome extension that adds a dark theme toggle for charts on MacroMicro.me, st
    - The extension should now appear in your extensions list (icons are already included!)
 
 2. **Use the Extension**:
-   - Visit any chart page on MacroMicro.me:
-     - https://www.macromicro.me/charts/109709/big-techs-m7-capex
-     - https://www.macromicro.me/collections/4093/us-big-tech/109709/big-techs-m7-capex
+   - Visit **any website** (financial charts, dashboards, documentation, etc.)
    - Click the extension icon in your toolbar to toggle dark theme
-   - Or use the floating toggle button (🌙/☀️) on the bottom-right of the page
+   - Or use the floating toggle button (🌙/☀️) on the bottom-right of any page
+   - Examples of sites that work great:
+     - Financial charts: MacroMicro.me, TradingView, Yahoo Finance
+     - Data dashboards: Grafana, Kibana, Tableau
+     - Documentation sites, blogs, news sites, etc.
 
 ### Method 2: Package and Install
 
@@ -38,41 +42,53 @@ zip -r mm-chart-dark.zip . -x "*.git*" -x "README.md" -x "*.DS_Store"
 
 Then load the unpacked extension or submit to Chrome Web Store.
 
+## Use Cases
+
+Perfect for:
+- 📊 **Financial analysts** viewing charts and market data
+- 👨‍💻 **Data scientists** working with dashboards and visualizations
+- 📰 **Night readers** browsing news and articles
+- 🎓 **Students** reading documentation and tutorials
+- 👀 **Anyone** who prefers dark mode on all websites
+
 ## Files Structure
 
 ```
 mm-chart-dark/
 ├── manifest.json          # Extension configuration
 ├── content.js            # Main content script
-├── dark-theme.css        # Dark theme styles
+├── dark-theme.css        # Dark theme styles (800+ lines)
 ├── popup.html            # Extension popup UI
 ├── popup.js              # Popup functionality
-├── icons/                # Extension icons
+├── generate_icons.py     # Icon generator script
+├── generate-icons.html   # Browser-based icon tool
+├── icons/                # Pre-generated extension icons
 │   ├── icon16.png
 │   ├── icon48.png
 │   └── icon128.png
-├── CLAUDE.md            # Project requirements
 └── README.md            # This file
 ```
 
 ## How It Works
 
 1. **Content Script** (`content.js`):
-   - Injects into MacroMicro.me chart pages
-   - Monitors DOM for chart elements
+   - Injects into **all web pages**
+   - Monitors DOM for chart elements and dynamic content
    - Applies dark theme classes when enabled
-   - Creates a floating toggle button on the page
+   - Creates a floating toggle button on every page
+   - Detects Highcharts, Chart.js, D3.js, SVG, Canvas charts
 
 2. **Dark Theme CSS** (`dark-theme.css`):
-   - Comprehensive dark theme styles
-   - Targets Highcharts elements (most common on financial sites)
-   - Supports SVG and Canvas-based charts
-   - Applies dark colors to page elements
-   - Colors inspired by GitHub Dark theme
+   - 800+ lines of comprehensive dark theme styles
+   - **Chart libraries**: Highcharts, Chart.js, Google Charts, SVG, Canvas
+   - **Page elements**: text, backgrounds, tables, forms, navigation
+   - **Color scheme**: GitHub Dark-inspired (#0d1117 bg, #c9d1d9 text)
+   - Carefully selected vibrant chart colors for dark backgrounds
 
 3. **Popup Interface** (`popup.html` + `popup.js`):
-   - Clean UI for toggling theme
+   - Beautiful gradient UI for toggling theme
    - Shows current theme status
+   - Works across all tabs and websites
    - Persists preference using Chrome storage
 
 ## Color Scheme
@@ -120,9 +136,11 @@ Or use the browser-based tool by opening `generate-icons.html` in your browser.
 - Reload the extension after making changes
 
 **Dark theme not applying:**
-- Refresh the MacroMicro.me page after installing the extension
-- Check if the page URL matches the patterns in `manifest.json`
+- Refresh the page after enabling the extension
+- The extension now works on **all URLs** by default
+- Look for the floating 🌙 button in the bottom-right corner
 - Open browser console (F12) to check for JavaScript errors
+- Some sites may need page-specific CSS adjustments
 
 **Charts look wrong:**
 - Different chart types may need additional CSS rules
@@ -131,9 +149,22 @@ Or use the browser-based tool by opening `generate-icons.html` in your browser.
 
 ## Browser Support
 
-- Chrome 88+ (Manifest V3)
-- Edge 88+
-- Other Chromium-based browsers
+- ✅ Chrome 88+ (Manifest V3)
+- ✅ Microsoft Edge 88+
+- ✅ Brave, Opera, Vivaldi
+- ✅ Any Chromium-based browser
+
+## Version History
+
+**v2.0.0** - Universal Dark Theme
+- Now works on **any website**, not just MacroMicro.me
+- Enhanced chart detection for multiple libraries
+- Improved compatibility across different sites
+
+**v1.0.0** - Initial Release
+- MacroMicro.me specific dark theme
+- Highcharts support
+- Basic toggle functionality
 
 ## Development
 
@@ -148,9 +179,24 @@ To modify and test the extension:
 
 MIT License - feel free to modify and distribute
 
+## Privacy & Permissions
+
+This extension requires:
+- **`<all_urls>`** - To work on any website you visit
+- **`storage`** - To save your theme preference
+- **`activeTab`** - To apply theme to the current tab
+
+**Your privacy is important**: This extension does NOT:
+- ❌ Collect any data
+- ❌ Track your browsing
+- ❌ Send data to external servers
+- ❌ Show ads or analytics
+
+All theme preferences are stored locally in your browser.
+
 ## Credits
 
 Built with inspiration from:
 - GitHub Dark theme color palette
 - Financial chart dark modes (TradingView, finguider, etc.)
-- Highcharts dark theme patterns
+- Highcharts, Chart.js dark theme patterns
